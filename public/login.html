@@ -82,6 +82,11 @@
     a:hover {
       text-decoration: underline;
     }
+    .footer-text {
+      text-align: center;
+      margin-top: 1rem;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -95,19 +100,26 @@
           <h3>Login to Uneko Account</h3>
         </div>
         <form action="/login/do_login" method="POST">
-  <div class="mb-3">
-    <label for="username" class="form-label">Username</label>
-    <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
-  </div>
-  <div class="mb-3">
-    <label for="password" class="form-label">Password</label>
-    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
-  </div>
-  <button type="submit" class="btn btn-custom w-100">Login</button>
-</form>
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username" required>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
+          </div>
+          <button type="submit" class="btn btn-custom w-100">Login</button>
+        </form>
         <hr>
         <div class="text-center text-custom">
           <a href="/owner">Forgot Password?</a>
+        </div>
+        <div class="footer-text">
+          Ask admin for get the password Admin*********<br>
+          6897 > nadip<br>
+          1315 > Bryan<br>
+          7303 > iyam<br>
+          9334 > dimz
         </div>
       </div>
     </div>
