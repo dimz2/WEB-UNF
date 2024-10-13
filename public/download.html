@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Download List</title>
+    <title>Daftar File untuk Diunduh</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -45,11 +45,22 @@
             background-color: rgba(255, 255, 255, 0.2);
             color: #fff;
         }
+        .btn-refresh {
+            margin-bottom: 20px;
+            background-color: rgba(0, 123, 255, 0.7);
+            border: 1px solid white;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        .btn-refresh:hover {
+            background-color: rgba(0, 123, 255, 0.9);
+        }
     </style>
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Download File List</h1>
+        <h1 class="text-center mb-4">Daftar File untuk Diunduh</h1>
+        <button class="btn btn-refresh" onclick="window.open('https://drive.google.com/drive/folders/1DtcqTGG4YcEsCAAFhcGGxSk92Mf9ecQB', '_blank')">Buka Folder Google Drive</button>
         <div class="table-responsive">
             <table class="table table-dark table-striped table-hover table-bordered align-middle">
                 <thead>
@@ -57,18 +68,17 @@
                         <th scope="col">Nama File</th>
                         <th scope="col">Mimetype</th>
                         <th scope="col">Size (MB)</th>
-                        <th scope="col">Download</th>
+                        <th scope="col">Unduh</th>
                     </tr>
                 </thead>
                 <tbody id="fileList">
-                    <!-- Rows will be added dynamically by JavaScript -->
+                    <!-- Baris akan ditambahkan secara dinamis oleh JavaScript -->
                 </tbody>
             </table>
         </div>
     </div>
 
     <script>
-        // Fungsi untuk memotong nama file yang terlalu panjang
         function truncateFileName(fileName, maxLength = 30) {
             if (fileName.length > maxLength) {
                 return fileName.substring(0, maxLength) + '...';
@@ -76,25 +86,23 @@
             return fileName;
         }
 
-        // Fungsi untuk mengonversi ukuran file dari byte ke MB
         function tomb(sizeInBytes) {
             const sizeInMB = sizeInBytes / (1024 * 1024);
-            return sizeInMB.toFixed(2); // Membulatkan ke dua angka desimal
+            return sizeInMB.toFixed(2);
         }
 
         const fileList = document.getElementById('fileList');
 
-        // Fungsi untuk memuat file dari server
         async function loadFiles() {
             try {
-                const response = await fetch('/list'); // Melakukan request GET ke /list
+                const response = await fetch('/list'); // Ganti dengan endpoint yang sesuai
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    throw new Error('Respon jaringan tidak baik');
                 }
                 
-                const files = await response.json(); // Asumsikan server mengembalikan JSON
-                
-                // Menghasilkan tabel dari file yang diambil
+                const files = await response.json();
+                fileList.innerHTML = ''; // Kosongkan baris yang ada
+
                 files.forEach(file => {
                     const row = document.createElement('tr');
 
@@ -113,21 +121,20 @@
 
                     const downloadCell = document.createElement('td');
                     const downloadLink = document.createElement('a');
-                    downloadLink.href = file.url; // Menggunakan URL langsung untuk download
+                    downloadLink.href = file.url;
                     downloadLink.textContent = 'Download';
                     downloadLink.classList.add('btn-download');
-                    downloadLink.setAttribute('download', file.name); // Menetapkan nama file untuk unduhan
+                    downloadLink.setAttribute('download', file.name);
                     downloadCell.appendChild(downloadLink);
                     row.appendChild(downloadCell);
 
                     fileList.appendChild(row);
                 });
             } catch (error) {
-                console.error('Failed to load files:', error);
+                console.error('Gagal memuat file:', error);
             }
         }
 
-        // Memuat file ketika halaman diakses
         loadFiles();
     </script>
 </body>
