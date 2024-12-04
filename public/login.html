@@ -123,8 +123,6 @@
   <div class="popup-overlay" id="popup-overlay">
     <div class="popup">
       <p>Website ini telah dikunci oleh founder kami dengan alasan keamanan.</p>
-      <button class="btn btn-primary" onclick="setPopupState(true)">True</button>
-      <button class="btn btn-danger" onclick="setPopupState(false)">False</button>
     </div>
   </div>
 
@@ -164,19 +162,13 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    // Menampilkan popup ketika halaman dimuat
-    window.onload = function() {
+    // Cek status popup dari localStorage
+    if (localStorage.getItem('popupShown') !== 'true') {
+      // Tampilkan popup jika belum pernah ditampilkan
       document.getElementById('popup-overlay').style.display = 'block';
-    };
 
-    // Fungsi untuk mengatur status popup
-    function setPopupState(state) {
-      if (state === true) {
-        document.getElementById('popup-overlay').style.display = 'none'; // Menutup popup jika True
-      } else {
-        // Jika False, popup tetap terlihat
-        alert("Popup tetap tampil karena False");
-      }
+      // Set status popup sebagai true agar tidak muncul lagi
+      localStorage.setItem('popupShown', 'true');
     }
   </script>
 </body>
