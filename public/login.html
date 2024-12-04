@@ -123,6 +123,8 @@
   <div class="popup-overlay" id="popup-overlay">
     <div class="popup">
       <p>Website ini telah dikunci oleh founder kami dengan alasan keamanan.</p>
+      <button class="btn btn-primary" onclick="setPopupState(true)">True</button>
+      <button class="btn btn-danger" onclick="setPopupState(false)">False</button>
     </div>
   </div>
 
@@ -166,6 +168,16 @@
     window.onload = function() {
       document.getElementById('popup-overlay').style.display = 'block';
     };
+
+    // Fungsi untuk mengatur status popup
+    function setPopupState(state) {
+      if (state === true) {
+        document.getElementById('popup-overlay').style.display = 'none'; // Menutup popup jika True
+      } else {
+        // Jika False, popup tetap terlihat
+        alert("Popup tetap tampil karena False");
+      }
+    }
   </script>
 </body>
 </html>
