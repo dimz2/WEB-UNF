@@ -114,14 +114,6 @@
     #popup .popup-content h4 {
       margin-bottom: 1rem;
     }
-    #popup .popup-content button {
-      background-color: #5c67f2;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
@@ -164,7 +156,6 @@
   <div id="popup">
     <div class="popup-content">
       <h4>Website ini telah dikunci oleh founder Unf dengan alasan keamanan</h4>
-      <button onclick="closePopup()">Close</button>
     </div>
   </div>
 
@@ -179,11 +170,6 @@
       if (showPopup) {
         document.getElementById("popup").style.display = "flex";
       }
-    }
-
-    // Fungsi untuk menutup pop-up
-    function closePopup() {
-      document.getElementById("popup").style.display = "none";
     }
 
     // Memeriksa status pop-up saat halaman dimuat
